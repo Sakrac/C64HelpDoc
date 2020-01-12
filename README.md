@@ -32,9 +32,9 @@ Obviously open up the .txt file and check what's there...
 
 At the top I'm declaring names and image files, most of these should make sense, but then there is one that comes with braces. This is a sprite image so you'll see a filename followed by sprite commands. Each sprite command will generate a sprite overlay from the original image.
 
-The first number is the color to use for a sprite, then the top x and y position of that sprite in the image. When all the sprites have been removed what remains will be converted to a multicolor bitmap image.
+The first number is the color to use for a sprite, then the top x and y position of that sprite in the image. When all the sprites have been removed what remains will be converted to a single color bitmap image.
 
-The format for all the images are the same as C64 multicolor bitmap but not fullscreen.
+The format for all the images are the same as C64 single color bitmap but not fullscreen.
 
 Next is the Font declaration, the characters in the font should be drawn to an 8x8 grid but don't worry about leaving space. You can have multiple fonts (although I haven't tried that yet).
 
