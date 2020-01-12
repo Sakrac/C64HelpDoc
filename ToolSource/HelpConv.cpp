@@ -76,54 +76,56 @@ bool ConvertFont( Font* font, strref path )
 		return false;
 	}
 
-	uint8_t *out = ( uint8_t* )malloc( 8 * 256 ), *o = out;
-	uint8_t widths[ MAX_CHARS ];
-	uint8_t *lp = data + x * y * n - n;
-
-
-	uint8_t clrCol[ 3 ] = { lp[ 0 ], lp[ 1 ], lp[ 2 ] };
-	bool setValue = ( uint16_t( data[ x*y*n - 3 ] ) + uint16_t( data[ x*y*n - 3 ] ) + uint16_t( data[ x*y*n - 3 ] ) ) < ( 128 * 3 );
-
-	int count = 0;
-
-	bool wasEmpty = false;
 	int index = 0;
-	int bw = x / 8;
-	int bh = y / 8;
-	while( !wasEmpty && index < MAX_CHARS && ( !count || index < count ) ) {
-		uint8_t* block = data + ( index / bw ) * ( 8 * n * x ) + ( index % bw ) * ( 8 * n );
-		uint8_t chr[ 8 ] = {};
-		uint8_t wid = 0, hgt = 0;
-		for( uint8_t py = 0; py < 8; ++py ) {
-			for( uint8_t px = 0; px < 8; ++px ) {
-				uint16_t d = uint16_t( abs8( block[ 0 ] - clrCol[ 0 ] ) ) + uint16_t( abs8( block[ 1 ] - clrCol[ 1 ] ) ) + uint16_t( abs8( block[ 2 ] - clrCol[ 2 ] ) );
-				bool set = d > 16;
-				if( set && px >= wid ) { wid = px + 1; }
-				if( set && py >= hgt ) { hgt = py + 1; }
-				if( set ) { chr[ py ] |= 1 << ( ( ~px ) & 7 ); }
-				block += n;
+	uint8_t widths[MAX_CHARS];
+	uint8_t *out = ( uint8_t* )malloc( 8 * 256 ), *o = out;
+
+	{
+		uint8_t *lp = data + x * y * n - n;
+		uint8_t clrCol[3] = { lp[0], lp[1], lp[2] };
+		bool setValue = (uint16_t(data[x*y*n - 3]) + uint16_t(data[x*y*n - 3]) + uint16_t(data[x*y*n - 3])) < (128 * 3);
+
+		int count = 0;
+
+		bool wasEmpty = false;
+		int bw = x / 8;
+		int bh = y / 8;
+		while (!wasEmpty && index < MAX_CHARS && (!count || index < count)) {
+			uint8_t* block = data + (index / bw) * (8 * n * x) + (index % bw) * (8 * n);
+			uint8_t chr[8] = {};
+			uint8_t wid = 0, hgt = 0;
+			for (uint8_t py = 0; py < 8; ++py) {
+				for (uint8_t px = 0; px < 8; ++px) {
+					uint16_t d = uint16_t(abs8(block[0] - clrCol[0])) + uint16_t(abs8(block[1] - clrCol[1])) + uint16_t(abs8(block[2] - clrCol[2]));
+					bool set = d > 16;
+					if (set && px >= wid) { wid = px + 1; }
+					if (set && py >= hgt) { hgt = py + 1; }
+					if (set) { chr[py] |= 1 << ((~px) & 7); }
+					block += n;
+				}
+				block += n * (x - 8);
 			}
-			block += n * ( x - 8 );
+			if ((wid > 0 && hgt > 0) || count) {
+				wasEmpty = false;
+				widths[index++] = wid;
+				for (int ch = 0; ch < 8; ++ch) { *o++ = chr[ch]; }
+			} else { break; }
 		}
-		if( ( wid > 0 && hgt > 0 ) || count ) {
-			wasEmpty = false;
-			widths[ index++ ] = wid;
-			for( int ch = 0; ch<8; ++ch ) { *o++ = chr[ ch ]; }
+	}
+	{
+		strown<_MAX_PATH> outBin;
+		outBin.append(path).append(font->BinFile).append(".bin");
+		FILE* f;
+		if (fopen_s(&f, outBin.c_str(), "wb") == 0) {
+			fwrite(out, o - out, 1, f);
+			fclose(f);
 		}
-		else { break; }
-	}
-	strown<_MAX_PATH> outBin(font->BinFile);
-	outBin.append(".bin");
-	FILE* f;
-	if( fopen_s( &f, outBin.c_str(), "wb" ) == 0 ) {
-		fwrite( out, o - out, 1, f );
-		fclose( f );
-	}
-	outBin.copy(font->BinFile);
-	outBin.append(".wid");
-	if( fopen_s( &f, outBin.c_str(), "wb" ) == 0 ) {
-		fwrite( widths, index, 1, f );
-		fclose( f );
+		outBin.clear();
+		outBin.append(path).append(font->BinFile).append(".wid");
+		if (fopen_s(&f, outBin.c_str(), "wb") == 0) {
+			fwrite(widths, index, 1, f);
+			fclose(f);
+		}
 	}
 
 	free(out);
@@ -966,9 +968,9 @@ int main( int argc, char* argv[] )
 
 	for( int f = 0; f < numFonts; ++f ) {
 		src.append( "FontBitmap_" ).append( aFonts[ f ].FontName ).append( ":\n" );
-		src.append( "\tincbin \"" ).append( aFonts[ f ].FontName ).append( ".bin\"\n" );
+		src.append( "\tincbin \"" ).append(path).append( aFonts[ f ].FontName ).append( ".bin\"\n" );
 		src.append( "FontWidth_" ).append( aFonts[ f ].FontName ).append( ":\n" );
-		src.append( "\tincbin \"" ).append( aFonts[ f ].FontName ).append( ".wid\"\n" );
+		src.append( "\tincbin \"" ).append(path).append( aFonts[ f ].FontName ).append( ".wid\"\n" );
 		src.append( "\n\n" );
 	}
 

@@ -76,6 +76,14 @@ else
 dc.b $0b, $08, $01, $00, $9e, $32, $30, $36, $34, $00, $00, $00, $00, $00, $00
 endif
 
+ifndef borderCol
+borderCol = 6
+endif
+
+ifndef backCol
+backCol=6
+endif
+
 Instructions:
 	sei
 	lda #0
@@ -114,9 +122,9 @@ Instructions:
     sta $d016
     lda #((Screen>>6)&$f0) | ((VRAM>>10)&$0e)
     sta $d018
-    lda #6
+    lda #borderCol
     sta $d020
-    lda #6
+    lda #backCol
     sta $d021
 
 	cli
@@ -1198,7 +1206,7 @@ Setup:
 
 	ldy #>Screen
 	ldx #4
-	lda #$e6
+	lda #$e0 | backCol
 	jsr ClearPages
 
 	rts
@@ -1795,7 +1803,7 @@ BitShiftInv:
 endif
 
 
-include "..\Sample\help.s"
+include "include_hack.s"
 
 PageKeyIndex:
 	dc.b $01, $03, $02, $02, $01, $02, $03, $03, $04, $06

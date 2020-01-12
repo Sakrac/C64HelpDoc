@@ -1,5 +1,8 @@
 ﻿// EXAMPLE FILE FOR GENERATING A HELP INCLUDE SOURCE AND BINARY ARSETS
 
+Image castle_left "castle.png"
+Image castle_right "castle_right.png"
+
 Font ScribeFont {
 	File "scribefont.png"
 	Bin "scribefont"
@@ -10,7 +13,7 @@ Style Header {
 	font scribefont
 	lineSpace 11
 	spaceWidth 4
-	charSpacing 3
+	charSpacing 4
 }
 
 Style Normal {
@@ -20,58 +23,33 @@ Style Normal {
 	charSpacing 2
 }
 
-Page Page5 {
-	Block {
-		40, 4, 240, 15
-		Style Header Center
-		Color 6 1
-		Paragraph
-			"GAME COMTROLS"
+Page Page1 {
+	Image {
+		0, 0
+		castle_left
+	}
+	Image {
+		160, 0
+		castle_right
 	}
 	Block {
-		0, 16, 101, 200
+		40, 104, 240, 15
 		Style Header Center
-		Color 6 1
-		Paragraph "JOYSTICK"
-		Color 6 3
-		Style Normal Left
+		Color 11 1
 		Paragraph
-			"Move cursor with stick left, up, right, down."
-		Divider
-		Paragraph
-			"Toggle grid squares by pressing fire."
-		Divider
-		Paragraph
-			"Hold fire and move stick to set multiple squares."
+			"GAME OF CASTLE"
 	}
 	Block {
-		109, 16, 101, 200
-		Style Header Center
-		Color 9 1
-		Paragraph "KEYBOARD"
-		Color 8 7
+		0, 128, 156, 72
 		Style Normal Left
-		Paragraph
-			"Use WASD or cursor keys to move cursor."
-		Divider
-		Paragraph
-			"Use Space to toggle grid squares set or clear."
-		Divider
-		Paragraph
-			"Use X to mark squares as known empty ([) and V to mark uncertain set (])."
+		Color 11 15
+		Paragraph "  The game of castle is riddled with a lack of rules. Don't assume that anything from this point makes any sense at all."
 	}
 	Block {
-		218, 16, 102, 200
-		Style Header Center
-		Color 0 1
-		Paragraph "MOUSE"
-		Color 6 14
+		164, 128, 156, 72
 		Style Normal Left
-		Paragraph
-			"First enable the mouse cursor in the game menu by hitting Return."
-		Divider
-		Paragraph
-			"Use left mouse button to mark squares as set, and right mouse button to mark squares as clear."
+		Color 11 15
+		Paragraph "  At first you MAY think this is reasonable but you would be quite in error."
 	}
 }
 
