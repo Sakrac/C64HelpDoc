@@ -58,6 +58,8 @@ Each page is the contents of one screen.
 	- Paragraph: A paragraph of text, use another Paragraph for line breaks.
 	- Divider: Adds more space between paragraphs
 
+![Sample2](Sample2.png)
+
 ## Questions
 
 Don't hesitate to ask me if you have questions, I know the documentation and comments are perhaps not fully helpful and I'm happy to add more comments and explanations here and there to this repo.
