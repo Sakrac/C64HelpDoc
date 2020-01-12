@@ -11,10 +11,13 @@ Feel free to use and modify, no credits required. This was originally created fo
 * This is the help tool I made for Nono Pixie
 * Nono Pixie help files are included for reference
 * Sparsely documented but I hope it is enough
+* The max width of things is 255 pixels, so full width images need to be split up and to fill the screen you need at least two text columns.
 
 ## Create the sample doc and run it
 
-If using windows just run the make_sample.bat file, this will build instructions.prg which you can just run in VICE!
+If using windows just run the make_sample.bat file, this will build sample.prg which you can just run in VICE!
+
+There is also a second sample with a bigger font, use make_sample2.bat to build sample2.prg.
 
 ## Compiling HelpConv.exe
 
