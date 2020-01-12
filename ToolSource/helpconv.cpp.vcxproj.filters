@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="struse">
+      <UniqueIdentifier>{d09e8e69-7279-4169-887d-dddd51b0cf42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stb">
+      <UniqueIdentifier>{2b30f4fe-c395-4ed2-a733-5d5febe8b92e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="external\struse\struse.h">
+      <Filter>struse</Filter>
+    </ClInclude>
+    <ClInclude Include="external\stb\stb_image.h">
+      <Filter>stb</Filter>
+    </ClInclude>
+    <ClInclude Include="help.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="external\struse\struse.natvis">
+      <Filter>struse</Filter>
+    </Natvis>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="HelpConv.cpp" />
+  </ItemGroup>
+</Project>

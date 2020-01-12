@@ -1,0 +1,461 @@
+﻿// EXAMPLE FILE FOR GENERATING A HELP INCLUDE SOURCE AND BINARY ARSETS
+
+Image HeaderImage "nonopixie_header.png"
+Image MiniPuzzle "MiniPuzzle.png"
+Image UpperBoard "upper_board.png"
+Image ColumnNumbers "column_numbers.png""
+Image RowNumbers "row_numbers.png"
+Image RowOver "row_over.png"
+Image EmptyPuzzle "empty_puzzle.png"
+Image XandQ "x_and_q.png"
+Image NonoPixie {
+	 "nonopixiesprite.png"
+	 sprite 14, 8, 1
+	 sprite 14, 2, 22
+	 sprite 6, 8, 0
+	 sprite 6, 8, 21
+	 sprite 5, 9, 29
+	 sprite 13, 17, 5
+	 sprite 1, 17, 5
+ }
+
+Font HelpFont {
+	File "helpfont.png"
+	Bin "helpfont"
+	Order "ABCDEFGHIJKLMNOPQRSTUVWXYZÅabcdefghijklmnopqrstuvwxyzå0123456789!\"#$%&'()*+,-./@<>=?\\[]"
+}
+
+Style Header {
+	font HelpFont
+	lineSpace 10
+	spaceWidth 4
+	charSpacing 2
+}
+
+Style Normal {
+	font HelpFont
+	lineSpace 7
+	spaceWidth 3
+	charSpacing 1
+}
+
+Page Page1 {
+	// Images first, then text will wrap around them
+	Image {
+		0, 0
+		HeaderImage
+	}
+
+	Image {
+		136, 88
+		MiniPuzzle
+	}
+
+	// a block is basically a column but can be a box anywhere on screen
+	Block {
+		0, 31, 156, 199
+		color 6 14
+
+		Style Header Center
+		Paragraph "CONTENTS"
+	}
+
+	Block {
+		16, 48, 16, 199
+		Style Normal Center
+		color 6 1
+		Paragraph "A"
+		Paragraph "B"
+		Paragraph "C"
+		Paragraph "D"
+		Paragraph "E"
+		Paragraph "F"
+		Paragraph "G"
+		Paragraph "H"
+		Paragraph "I"
+	}
+	Block {
+		32, 48, 96, 199
+		Style Normal Right
+		color 6 14
+		Paragraph "Controls/Summary"
+		Paragraph "Story"
+		Paragraph "Puzzle info"
+		Paragraph "Markers"
+		Paragraph "Game Menu"
+		Paragraph "Game Controls"
+		Paragraph "Quick Keyboard"
+		Paragraph "Getting Started"
+		Paragraph "Credits and Acknowledgements"
+	}
+
+	Block {
+		164, 2, 156, 200
+		Style Header Center
+		Color 6 1
+		Paragraph "MANUAL CONTROLS"
+		Color 9 7
+		Style Normal Left
+
+		Paragraph "Cursor or Joystick in Port 2 Left / Right to flip page back and forward."
+		Divider
+		Paragraph "Alternatively use C= / Space to flip page back and forward."
+		Divider
+		Paragraph "Fire or Run/Stop to exit to Title Screen."
+		Divider
+		Paragraph "Press letter key to jump to chapter."
+		Divider
+		Paragraph "Press Home to return to this page."
+
+		Divider
+		Style Header Center
+		Color 6 1
+		Paragraph "GAME SUMMARY"
+		Color 9 7
+		Style Normal Left
+		Paragraph "Nono Pixie is a grid puzzle game that can be played with a Joystick in port 2 or a Mouse in port 1 or by using the keyboard."
+	}
+}
+
+Page PageStory {
+	Image {
+		0, 72
+		NonoPixie
+	}
+
+	Block {
+		0, 4, 156, 199
+		color 6 1
+		Style Header Center
+		Paragraph "STORY"
+		Style Normal Left
+		color 6 3
+		Divider
+		Paragraph
+			"You bought a complete collection of 100 grid pictures, and they have finally arrived after a long shipping."
+		Divider
+		color 6 7
+		Paragraph
+			"Unfortunately it is too late to bring them inside. Nothing to worry about, surely noone would touch them overnight?"
+		Divider
+		color 6 14
+		Paragraph
+			"Just in case something happens you carefully write down the number of tiles in each picture's row and column."
+	}
+
+	Block {
+		164, 4, 156, 199
+		Style Normal Left
+		color 6 14
+		Paragraph
+			"Of course, anything valuable never gets left alone. Mischevious pixies are up to no good in the night."
+		Divider
+		color 6 13
+		Paragraph
+			"All the tiles have been removed and a massive chore awaits you!"
+	}
+}
+
+Page Page2 {
+	Image { 88, 16 EmptyPuzzle }
+	Image { 192, 0 UpperBoard }
+	Image { 0, 96 ColumnNumbers }
+	Image { 200, 80 RowNumbers }
+	Image { 200, 144 RowOver }
+
+	Block {
+		0, 0, 156, 199
+		color 6 3
+		Style Normal Left
+		Paragraph
+			"A puzzle starts with an empty grid. Using the numbers for columns and rows you can figure out which grid squares should be set. When the number of set squares match the numbers for each row and column the puzzle is solved!"
+		Divider
+		color 6 1
+		Paragraph
+			"Each number represents a group of set squares, so if there are two numbers in a column there are two groups of set squares with at least one empty square between them."
+		Divider
+		color 6 7
+		Paragraph
+			"The numbers that relate to the current cursor position is highlighted in green to help you see the most relevant counts."
+	}
+
+	Block {
+		164, 51, 156, 96
+		color 6 14
+		Style Normal Left
+		Paragraph
+			"To help you count squares and see how complete a row or column is the numbers will change color."
+	}
+
+	Block {
+		164, 90, 156, 144
+		color 6 7
+		Style Normal Left
+		Paragraph
+			"A green number means that the group has the correct number of set cells. If there are more than one number the leftmost group will be associated with the first number on a row and so on."
+	}
+
+	Block {
+		164, 154, 156, 200
+		color 6 3
+		Style Normal Left
+		Paragraph
+			"A red number means there are too many set squares, and a blue number means there are more squares to set. If there are no set squares in a group the number stays black."
+	}
+}
+
+Page Page3 {
+	Image { 40, 16 XandQ }
+
+	Block {
+		0, 5, 156, 16
+		color 6 1
+		Style Header Center
+		Paragraph "MARKERS"
+	}
+
+	Block {
+		0, 54, 156, 199
+		color 6 14
+		Style Normal Left
+		Paragraph
+			"Most puzzles require you to find good starting lines and then look at rows and columns to find suitable spots to set. To help keep track of which squares you have determined must be empty, or square you think are set you can use the [ and ] markers."
+		Divider
+		color 6 3
+		Paragraph
+			"With a keyboard simply hit X to mark [, an known empty square or V to mark ], an uncertain set square."
+	}
+	Block {
+		164, 0, 156, 199
+		color 6 7
+		Paragraph
+			"With a joystick you can toggle an empty square using a double tap on fire, or double tap fire on a set square to mark it as uncertain (]). With a mouse double click left for known empty and right for uncertain set."
+		Divider
+		color 6 14
+		Paragraph
+			"To mark multiple squares set, known empty, etc. simply keep the button (key or fire or mouse button) down and move the cursor!"
+	}
+}
+
+Page Page4 {
+	Block {
+		0, 4, 156, 200
+		color 6 1
+		Style Header Center
+		Paragraph "THE GAME MENU"
+		Divider
+		color 6 14
+		Style Normal Left
+		Paragraph
+			"To customize the game to your preference the game menu is available at all times. To access the game menu while solving a puzzle hit RETURN or move the joystick up, down, up, down."
+		Divider
+		color 6 3
+		Paragraph
+			"Enabling MOUSE will disable certain keyboard controls and show the mouse cursor."
+		Divider
+		color 6 13
+		Paragraph
+			"The TIMER displays a timer on-screen that stops when a puzzle is complete."
+		color 6 14
+		Divider
+		Paragraph
+			"Change the PUZZLE at any time and play in any order! The puzzles are ordered by difficulty."
+		Divider
+	}
+	Block {
+		164, 0, 156, 200
+		Style Normal Left
+		color 6 3
+		Paragraph
+			"Disable or stop the BACKGROUND at any time if it distracts your attention from the puzzle."
+		Divider
+		color 6 14
+		Paragraph
+			"The FILTER offers puzzles by themes including animals, memorable (C64) game icons, Yacht Club Games characters, other things or random puzzles."
+		Divider
+		color 6 3
+		Paragraph
+			"The MINIVIEW is a small preview image of the puzzle that updates as you solve it. You can choose to double the height and width, but for larger puzzles this will hide numbers you need to solve the puzzle."
+		Paragraph
+			"When a puzzle is solved the mini view will always expand."
+	}
+}
+
+Page Page5 {
+	Block {
+		40, 4, 240, 15
+		Style Header Center
+		Color 6 1
+		Paragraph
+			"GAME COMTROLS"
+	}
+	Block {
+		0, 17, 101, 200
+		Style Header Center
+		Color 6 1
+		Paragraph "JOYSTICK"
+		Color 6 3
+		Style Normal Left
+		Paragraph
+			"- Move cursor with stick left, up, right, down."
+		Divider
+		Paragraph
+			"- Toggle grid squares by pressing fire."
+		Divider
+		Paragraph
+			"- Hold fire and move stick to set multiple squares."
+		Divider
+		Paragraph
+			"- Double tap fire on an empty square to mark it known empty ([) or on a set square to mark it uncertain set (])."
+		Divider
+		Paragraph
+			"- To access the game menu press up, down, up, down on the stick. To exit press Fire."
+	}
+	Block {
+		109, 17, 101, 200
+		Style Header Center
+		Color 9 1
+		Paragraph "KEYBOARD"
+		Color 8 7
+		Style Normal Left
+		Paragraph
+			"- Use WASD or cursor keys to move cursor."
+		Divider
+		Paragraph
+			"- Use Space to toggle grid squares set or clear."
+		Divider
+		Paragraph
+			"- Use X to mark squares as known empty ([) and V to mark uncertain set (])."
+		Divider
+		Paragraph
+			"- Keep key down (Space, X or V) to mark multiple squares the same while moving cursor."
+		Paragraph
+			"- To access the game menu hit Return, hit Return again to exit."
+	}
+	Block {
+		218, 17, 102, 200
+		Style Header Center
+		Color 0 1
+		Paragraph "MOUSE"
+		Color 6 14
+		Style Normal Left
+		Paragraph
+			"- First enable the mouse cursor in the game menu by hitting Return."
+		Divider
+		Paragraph
+			"- Use left mouse button to mark squares as set, and right mouse button to mark squares as clear."
+		Divider
+		Paragraph
+			"- Double click left mouse button to mark a square as known clear ([) or double click right mouse button to mark a square as uncertain set (])."
+		Divider
+		Paragraph
+			"- Hold Left Shift to lock horizontally or C= to lock vertically."
+	}
+}
+
+Page Page6 {
+	Image { 48, 104 EmptyPuzzle }
+
+	Block {
+		0, 4, 156, 127
+		color 6 1
+		Style Header Center
+		Paragraph "QUICK KEYBOARD"
+		Divider
+		color 6 14
+		Style Normal Left
+		Paragraph
+			"To set multiple squares in a row or column without moving the cursor: hold CTRL and press a number to place horizontally, or hold C= and press a number to place vertically. This feature is disabled when the mouse cursor is enabled."
+	}
+
+	Block {
+		0, 84, 156, 103
+		Divider
+		Style Header Center
+		Color 6 1
+		Paragraph "GETTING STARTED"
+	}
+
+	Block {
+		0, 172, 156, 200
+		color 6 3
+		Style Normal Left
+		Paragraph
+			"Row 3 has a group as wide as the entire grid, this is a good starting point!"
+	}
+
+	Block {
+		164, 0, 156, 200
+		Paragraph
+			"Fill out row 3, then look at row 2 which has no number. Fill out row 2 with [[[[."
+		Divider
+		Paragraph
+			"Column 3 has a group of one and a group of 2, that is all the remaining squares in that column."
+			Divider
+		Paragraph
+			"Column 4 has only one square set and it is alread marked, the remaining squares can be marked with [."
+			Divider
+		Paragraph
+			"Column 2 has a group of two squares, this can only fit in row 3 and 4."
+			Divider
+		Paragraph
+			"Column 1 has two separate squares, one is already set so the last square must not be next to that square and can only be in row 1."
+		Divider
+		Paragraph
+			"This completes the puzzle! Game puzzles can be up to 32 by 16 squares so there is plenty of challenge ahead."
+	}
+}
+
+Page Page7 {
+	Block {
+		0, 4, 156, 200
+		Style Header Center
+		Color 6 1
+		Paragraph "ACKNOWLEDGEMENTS"
+		Style Normal Center
+		Divider
+		Color 8 1
+		Paragraph
+			"Shovel Knight characters and marks are properties of Yacht Club Games(tm)."
+		Divider
+		Paragraph
+			"References to existing properties makes no claim of ownership of the original property."
+		Divider
+		Color 9 10
+		Paragraph
+			"Nono Pixie is available from sakrac.itch.io/nono-pixie and future revisions if released will be available from there."
+	}
+
+	Block {
+		164, 4, 156, 200
+		Color 6 1
+		Style Header Center
+		Paragraph "CREDITS"
+		Divider
+		Style Normal Center
+		Color 2 10
+		Paragraph
+			"Game by"
+		Divider
+		Color 2 1
+		Paragraph
+			"Carl-Henrik Skårstedt"
+		Divider
+		Color 2 10
+		Paragraph
+			"Music By"
+		Divider
+		Color 2 1
+		Paragraph
+			"Psych858o"
+		Divider
+		Color 2 10
+		Paragraph
+			"Dir art and suggestions"
+		Divider
+		Color 2 1
+		Paragraph
+			"Logiker"
+	}
+}
+
