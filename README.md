@@ -10,6 +10,10 @@ Feel free to use and modify, no credits required. This was originally created fo
 * Nono Pixie help files are included for reference
 * Sparsely documented but I hope it is enough
 
+## Create the sample doc and run it
+
+If using windows just run the make_sample.bat file, this will build instructions.prg which you can just run in VICE!
+
 ## Compiling HelpConv.exe
 
 This was compiled for 64 bit windows 10 and if you need to compile your own version (or add features) just compile ToolSource\HelpConv.cpp. It has a Visual Studio solution if helpful. I haven't tried to build it on other systems but hopefully it will not cause any errors.
