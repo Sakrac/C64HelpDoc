@@ -57,4 +57,4 @@ Each page is the contents of one screen.
 
 ## Questions
 
-Don't hesitate to ask me if you have questions, I know the documentation and comments are fully helpful and I'm happy to add more comments and explanations here and there to this repo.
+Don't hesitate to ask me if you have questions, I know the documentation and comments are perhaps not fully helpful and I'm happy to add more comments and explanations here and there to this repo.
