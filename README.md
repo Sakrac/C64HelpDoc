@@ -4,6 +4,8 @@ Make PDF style manuals for C64 games!
 
 Feel free to use and modify, no credits required. This was originally created for Nono Pixie from Space Moguls by Carl-Henrik Skårstedt.
 
+![example](example.png)
+
 ## Notes
 
 * This is the help tool I made for Nono Pixie
